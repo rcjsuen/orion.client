@@ -22,6 +22,7 @@ var auth = require('./lib/middleware/auth'),
 	argslib = require('./lib/args'),
 	ttyShell = require('./lib/tty_shell'),
 	languageServer = require('./lib/languageServer'),
+	dockerLanguageServer = require('./lib/dockerLanguageServer'),
 	api = require('./lib/api');
 
 
@@ -165,6 +166,7 @@ function startServer(cb) {
 				}
 			});
 			languageServer.install({ io: io, workspaceDir: workspaceDir, metastore: orion.locals.metastore }); //TODO no good for multiuser
+			dockerLanguageServer.install({ io: io, workspaceDir: workspaceDir, metastore: orion.locals.metastore }); //TODO no good for multiuser
 		} catch (e) {
 			logger.error(e && e.stack);
 		}
